@@ -3,6 +3,7 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import io, base64
 
 # Load employee data (100 rows)
 df = pd.read_csv("employee_data_100.csv")
@@ -21,9 +22,35 @@ plt.xlabel("Department")
 plt.ylabel("Count")
 plt.tight_layout()
 
-# Save the plot as PNG
-plt.savefig("department_distribution.png", dpi=150)
+# Save plot to buffer and encode as base64 (for embedding in HTML)
+buf = io.BytesIO()
+plt.savefig(buf, format="png", dpi=150, bbox_inches="tight")
+plt.close()
+buf.seek(0)
+img_b64 = base64.b64encode(buf.read()).decode("utf-8")
 
-# Optionally show the plot
-plt.show()
+# Build HTML content
+html_content = f"""
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Employee Performance Visualization</title>
+</head>
+<body>
+  <h1>Employee Performance Visualization</h1>
+  <p><b>Email (verification):</b> 24f2009046@ds.study.iitm.ac.in</p>
+  <p><b>Finance Department Count:</b> {finance_count}</p>
+  <h2>Department Distribution</h2>
+  <img src="data:image/png;base64,{img_b64}" alt="Department Distribution">
+</body>
+</html>
+"""
+
+# Save as HTML file
+with open("employee_viz.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("✅ HTML file 'employee_viz.html' generated successfully.")
+
 
