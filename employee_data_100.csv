@@ -1,0 +1,101 @@
+employee_id,department,region,performance_score,years_experience,satisfaction_rating
+EMP001,Finance,Africa,62.16,11,4.6
+EMP002,Sales,Middle East,89.23,9,3.0
+EMP003,Marketing,North America,92.83,13,3.0
+EMP004,Finance,Middle East,91.28,10,4.9
+EMP005,Operations,North America,91.4,14,5.0
+EMP006,IT,Africa,51.25,9,2.0
+EMP007,Sales,Asia,55.12,18,1.3
+EMP008,Operations,Africa,51.49,7,1.9
+EMP009,HR,Africa,78.06,18,2.7
+EMP010,Operations,Europe,63.91,1,4.0
+EMP011,Sales,Asia,71.13,9,1.6
+EMP012,Logistics,North America,55.11,13,1.4
+EMP013,Logistics,North America,80.19,2,3.9
+EMP014,HR,Africa,98.66,13,1.3
+EMP015,Marketing,Asia,80.93,12,3.3
+EMP016,IT,Africa,52.29,8,4.1
+EMP017,Finance,Middle East,93.32,13,2.1
+EMP018,IT,North America,58.13,12,1.8
+EMP019,Marketing,Asia,96.83,3,3.4
+EMP020,Sales,Europe,86.46,6,2.8
+EMP021,Marketing,Asia,84.41,8,3.7
+EMP022,Logistics,Africa,61.45,2,4.2
+EMP023,Operations,North America,53.31,19,4.5
+EMP024,Marketing,Middle East,82.77,13,4.5
+EMP025,IT,South America,57.14,5,2.0
+EMP026,HR,Europe,63.14,19,2.7
+EMP027,HR,South America,68.1,5,3.0
+EMP028,Finance,Africa,93.06,5,3.5
+EMP029,Logistics,Asia,71.11,3,2.5
+EMP030,HR,South America,76.46,18,4.4
+EMP031,Finance,Asia,86.04,18,4.0
+EMP032,Logistics,Asia,67.01,10,2.7
+EMP033,Operations,Africa,97.69,9,4.9
+EMP034,Logistics,Middle East,75.38,4,4.5
+EMP035,Marketing,Asia,75.38,7,1.6
+EMP036,Logistics,Middle East,76.97,17,4.7
+EMP037,HR,North America,74.43,4,4.7
+EMP038,Logistics,North America,61.97,8,4.5
+EMP039,Finance,Africa,86.6,3,4.9
+EMP040,HR,Middle East,56.42,16,4.8
+EMP041,Sales,North America,76.38,20,2.7
+EMP042,Sales,Europe,87.76,7,3.9
+EMP043,Operations,Asia,82.49,15,4.6
+EMP044,Operations,Africa,62.4,3,2.4
+EMP045,HR,Europe,61.51,8,1.0
+EMP046,IT,Asia,52.94,3,4.6
+EMP047,Logistics,North America,53.54,8,2.1
+EMP048,Operations,Middle East,76.96,19,3.3
+EMP049,Sales,South America,90.37,7,1.4
+EMP050,IT,South America,67.71,14,2.9
+EMP051,IT,Africa,83.67,4,1.2
+EMP052,IT,North America,90.03,4,2.0
+EMP053,Sales,Europe,72.43,14,1.7
+EMP054,Operations,Middle East,93.72,3,2.8
+EMP055,Logistics,Europe,54.9,18,4.3
+EMP056,Finance,Middle East,58.32,16,2.9
+EMP057,Logistics,South America,95.12,6,2.5
+EMP058,Operations,North America,96.33,15,2.1
+EMP059,IT,Asia,99.77,18,3.6
+EMP060,Operations,Middle East,59.49,7,4.9
+EMP061,HR,Asia,77.11,11,1.2
+EMP062,HR,South America,75.14,17,1.6
+EMP063,HR,Africa,92.57,3,3.4
+EMP064,IT,Middle East,70.19,19,2.0
+EMP065,HR,Africa,80.97,14,3.6
+EMP066,HR,Europe,65.82,9,1.8
+EMP067,IT,North America,61.93,13,1.5
+EMP068,IT,North America,72.86,3,1.0
+EMP069,HR,Europe,99.8,3,3.2
+EMP070,HR,North America,56.62,12,4.5
+EMP071,Sales,North America,64.25,15,4.3
+EMP072,IT,North America,80.58,17,1.0
+EMP073,Logistics,Europe,64.97,4,4.8
+EMP074,Sales,North America,55.77,4,4.0
+EMP075,Sales,North America,64.09,7,3.9
+EMP076,Sales,Asia,81.71,9,3.0
+EMP077,Marketing,Africa,54.61,14,4.3
+EMP078,Finance,Africa,66.68,5,3.5
+EMP079,Marketing,Middle East,87.06,18,3.8
+EMP080,HR,Africa,55.59,5,3.2
+EMP081,Logistics,North America,79.13,5,2.7
+EMP082,Finance,North America,68.23,2,4.6
+EMP083,Sales,Asia,62.48,4,2.4
+EMP084,HR,South America,98.69,5,4.7
+EMP085,Sales,Middle East,98.81,6,4.5
+EMP086,Finance,Middle East,86.83,11,4.1
+EMP087,Operations,Asia,93.2,8,2.1
+EMP088,Logistics,Asia,55.4,2,4.4
+EMP089,Sales,Middle East,90.83,15,2.4
+EMP090,Logistics,Middle East,61.15,7,2.6
+EMP091,Marketing,Africa,98.34,9,2.4
+EMP092,HR,South America,83.98,18,2.3
+EMP093,Finance,Africa,93.85,9,1.7
+EMP094,Marketing,Africa,55.42,14,2.4
+EMP095,Logistics,North America,71.82,17,1.5
+EMP096,HR,Middle East,62.74,14,1.0
+EMP097,Logistics,Europe,84.34,7,2.5
+EMP098,Finance,Asia,96.04,20,2.3
+EMP099,Logistics,Africa,85.99,10,3.0
+EMP100,IT,South America,66.31,10,3.2
