@@ -3,121 +3,115 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
-import io, base64, textwrap
-from datetime import datetime
+import seaborn as sns
+import os
+import textwrap
 
-# Load the dataset
-csv_path = "employee_data_100.csv"
-df = pd.read_csv(csv_path)
+# ---------- Parameters ----------
+CSV_FILE = "employee_data.csv"
+PNG_FILE = "employee_dept_hist.png"
+HTML_FILE = "report.html"
+VERIFICATION_EMAIL = "24f2009046@ds.study.iitm.ac.in"
+# --------------------------------
 
-# Frequency count for Finance department
-finance_count = (df["department"] == "Finance").sum()
-print(f'Frequency count for "Finance" department: {finance_count}')
+def main():
+    # 1) Load data
+    df = pd.read_csv(CSV_FILE)
 
-# Create histogram (bar chart of departments)
-dept_counts = df["department"].value_counts().sort_index()
+    # 2) Frequency counts
+    dept_counts = df['department'].value_counts()
+    finance_count = dept_counts.get('Finance', 0)
 
-plt.figure(figsize=(8, 5))
-dept_counts.plot(kind="bar")
-plt.title("Department Distribution (100 Employees)")
-plt.xlabel("Department")
-plt.ylabel("Count")
-plt.tight_layout()
+    # Print to console
+    print("Department counts:")
+    print(dept_counts.to_string())
+    print()
+    print(f"Frequency count for Finance department: {finance_count}")
 
-# Save plot to memory buffer for embedding in HTML
-buf = io.BytesIO()
-plt.savefig(buf, format="png", bbox_inches="tight", dpi=150)
-plt.close()
-buf.seek(0)
-img_b64 = base64.b64encode(buf.read()).decode("utf-8")
+    # 3) Create histogram (countplot) of departments using seaborn
+    plt.figure(figsize=(10,6))
+    sns.set_style("whitegrid")
+    ax = sns.countplot(y='department', data=df, order=dept_counts.index)
+    ax.set_title("Employee Count by Department")
+    ax.set_xlabel("Count")
+    ax.set_ylabel("Department")
 
-# Python code snippet for embedding in HTML
-runnable_code = textwrap.dedent("""\
+    # Annotate bars with counts
+    for p in ax.patches:
+        width = p.get_width()
+        ax.text(width + 0.3, p.get_y() + p.get_height() / 2,
+                int(width), va='center')
+
+    plt.tight_layout()
+    plt.savefig(PNG_FILE, dpi=150)
+    plt.close()
+    print(f"\nSaved histogram as: {PNG_FILE}")
+
+    # 4) Embed the key code in the HTML
+    python_code = textwrap.dedent("""\
     import pandas as pd
     import matplotlib.pyplot as plt
+    import seaborn as sns
 
-    # Path to your CSV (place your 100-row dataset here)
-    csv_path = "employee_data_100.csv"
+    df = pd.read_csv("employee_data.csv")
 
-    # Load data
-    df = pd.read_csv(csv_path)
+    # Frequency counts
+    dept_counts = df['department'].value_counts()
+    finance_count = dept_counts.get('Finance', 0)
 
-    # Frequency count for "Finance"
-    finance_count = (df["department"] == "Finance").sum()
-    print(f'Frequency count for "Finance" department: {finance_count}')
+    print("Department counts:")
+    print(dept_counts.to_string())
+    print(f"Frequency count for Finance department: {finance_count}")
 
-    # Department distribution (bar chart)
-    dept_counts = df["department"].value_counts().sort_index()
+    # Plot histogram
+    plt.figure(figsize=(10,6))
+    sns.countplot(y='department', data=df, order=dept_counts.index)
+    plt.title("Employee Count by Department")
+    plt.xlabel("Count")
+    plt.ylabel("Department")
+    plt.show()
+    """)
 
-    plt.figure(figsize=(8, 5))
-    dept_counts.plot(kind="bar")
-    plt.title("Department Distribution (100 Employees)")
-    plt.xlabel("Department")
-    plt.ylabel("Count")
-    plt.tight_layout()
-
-    # Save the figure if you want a separate image file
-    plt.savefig("department_distribution.png", dpi=150, bbox_inches="tight")
-    plt.close()
-""")
-
-# Timestamp
-generated_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-# Build HTML
-html_content = f"""<!DOCTYPE html>
-<html lang="en">
+    # 5) Create HTML
+    html_content = f"""<!doctype html>
+<html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Employee Department Visualization</title>
-<style>
-  body {{ font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 2rem; }}
-  h1, h2 {{ margin: 0 0 0.5rem 0; }}
-  .meta {{ color: #444; margin-bottom: 1.25rem; }}
-  .card {{ border: 1px solid #ddd; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1rem; }}
-  pre {{ background: #f7f7f7; border-radius: 10px; padding: 1rem; overflow-x: auto; }}
-  code {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }}
-  img {{ max-width: 100%; height: auto; display: block; }}
-</style>
+  <meta charset="utf-8">
+  <title>Employee Departments Report</title>
+  <style>
+    body {{ font-family: Arial, sans-serif; max-width:900px; margin:40px; }}
+    .header {{ margin-bottom: 20px; }}
+    .counts, pre.code {{ background:#f6f6f6; padding:10px; border-radius:6px; }}
+    img {{ max-width:100%; height:auto; border:1px solid #ddd; padding:6px; background:white; }}
+    footer {{ margin-top:30px; color:#666; font-size:0.9em; }}
+  </style>
 </head>
 <body>
-  <h1>Employee Department Visualization</h1>
-  <div class="meta">Generated on: {generated_time}</div>
-
-  <div class="card">
-    <h2>Contact</h2>
-    <p>Email (for verification): <strong>24f2009046@ds.study.iitm.ac.in</strong></p>
+  <div class="header">
+    <h1>Employee Departments Report</h1>
+    <p>Verification email: <strong>{VERIFICATION_EMAIL}</strong></p>
   </div>
 
-  <div class="card">
-    <h2>Finance Department Frequency</h2>
-    <p>Frequency count for "Finance" department (from the loaded CSV): <strong>{finance_count}</strong></p>
+  <h2>Department counts</h2>
+  <div class="counts">
+    <pre>{dept_counts.to_string()}</pre>
+    <p><strong>Finance count: {finance_count}</strong></p>
   </div>
 
-  <div class="card">
-    <h2>Department Distribution</h2>
-    <img alt="Department Distribution" src="data:image/png;base64,{img_b64}" />
-  </div>
+  <h2>Department distribution</h2>
+  <img src="{PNG_FILE}" alt="Department histogram">
 
-  <div class="card">
-    <h2>Python Code Used</h2>
-    <p>Save your full dataset as <code>employee_data_100.csv</code> in the same folder, then run:</p>
-    <pre><code>{runnable_code}</code></pre>
-  </div>
+  <h2>Python code used</h2>
+  <pre class="code">{python_code}</pre>
 
-  <div class="card">
-    <h2>Notes</h2>
-    <ul>
-      <li>This HTML is self-contained and embeds the chart as base64 so it works via the raw GitHub URL.</li>
-      <li>Replace the CSV with your 100-row dataset and rerun the Python to refresh the numbers and figure.</li>
-    </ul>
-  </div>
+  <footer>Generated by employee_viz.py</footer>
 </body>
-</html>"""
+</html>
+"""
+    with open(HTML_FILE, "w", encoding="utf-8") as f:
+        f.write(html_content)
+    print(f"Saved HTML report as: {HTML_FILE}")
+    print("\nTo view the report locally, open:", os.path.abspath(HTML_FILE))
 
-# Save HTML file
-with open("employee_viz.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-print("✅ HTML file 'employee_viz.html' generated successfully (includes code + output).")
+if __name__ == "__main__":
+    main()
